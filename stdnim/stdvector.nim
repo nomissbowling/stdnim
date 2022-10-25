@@ -16,10 +16,10 @@ proc begin*[T](v: StdVector[T]): StdVectorIterator[T] {.importcpp: "begin".}
 proc `end`*[T](v: StdVector[T]): StdVectorIterator[T] {.importcpp: "end".}
 proc `[]`*[T](it: StdVectorIterator[T]): T {.importcpp: "(*#)".}
 proc inc*[T](it: var StdVectorIterator[T]) {.importcpp: "(++#)".}
-proc next*[T](it: StdVectorIterator[T]; n: cint=1): StdVectorIterator[T]
+proc next*[T](it: StdVectorIterator[T]; n: clong=1): StdVectorIterator[T]
   {.importcpp: "next(@)".}
 proc `<`*[T](a, b: StdVectorIterator[T]): bool {.importcpp: "operator<(@)".}
 proc `<=`*[T](a, b: StdVectorIterator[T]): bool {.importcpp: "operator<=(@)".}
-proc at*[T](v: StdVector[T], idx: cint): ref T {.importcpp: "&#.at(@)".}
-proc at*[T](v: ref StdVector[T], idx: cint): ref T {.importcpp: "&#->at(@)".}
+proc at*[T](v: StdVector[T], idx: clong): ref T {.importcpp: "&#.at(#)".}
+proc at*[T](v: ref StdVector[T], idx: clong): ref T {.importcpp: "&#->at(#)".}
 {.pop.}
