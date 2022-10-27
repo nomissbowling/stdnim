@@ -1,14 +1,21 @@
 mode = ScriptMode.Verbose
 
+# Package
+
 packageName   = "stdnim"
 version       = "0.0.1"
 author        = "nomissbowling"
 description   = "bindings to C++ std classes for Nim"
 license       = "MIT"
+srcDir        = "src"
 skipDirs      = @["tests", "benchmarks", "htmldocs"]
 skipFiles     = @["_config.yml"]
 
+# Dependencies
+
 requires "nim >= 1.0.0"
+
+# Scripts
 
 proc configForTests() =
   --hints: off
@@ -26,15 +33,15 @@ proc configForBenchmarks() =
 
 task test, "run tests":
   configForTests()
-  setCommand "c", "tests/tAll.nim"
+  setCommand "c", "tests/tStdAll.nim"
 
-task testAll, "run All tests":
+task testAll, "run StdAll tests":
   configForTests()
-  setCommand "c", "tests/tAll.nim"
+  setCommand "c", "tests/tStdAll.nim"
 
 task benchmark, "run benchmarks":
   configForBenchmarks()
-  setCommand "c", "benchmarks/bAll.nim"
+  setCommand "c", "benchmarks/bStdAll.nim"
 
 task docs, "generate documentation":
   exec("mkdir -p htmldocs/stdnim")

@@ -2,7 +2,7 @@
 
 import unittest
 import stdnim
-import ../../stdnim/private/stdnimcommon
+import ../../src/stdnim/private/stdnimcommon
 import strformat
 
 proc run() =
