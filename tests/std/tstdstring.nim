@@ -28,8 +28,9 @@ proc run() =
       stdstr[3] = 'x'
       echo immstr[4]
       immstr[4] = 'x'
-      # var c: char = immstr[3]
-      # c = 'y'
+      var pc: ptr char = immstr.at(3)
+      pc[] = 'y'
+      echo fmt"(ptr) immstr size: {immstr.addr[].size}"
 
       # TODO: stdstr.items
       # for it in stdstr:
@@ -47,6 +48,6 @@ proc run() =
       echo fmt"immstr: {immstr.size} {$immstr.cStr}"
 
       check($stdstr.cStr == "!esxSTDSTz")
-      check($immstr.cStr == "!irexz")
+      check($immstr.cStr == "!iryxz")
 
 run()

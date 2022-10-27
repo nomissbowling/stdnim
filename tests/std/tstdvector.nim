@@ -49,13 +49,22 @@ proc run() =
           @[12, 3],
           @[13, 4],
           @[14, 5],
-          @[15, 6],
+          @[60, 16], # @[15, 6], # overwrite test
           @[16, 7]]]
 
     test "test StdVector (front)":
       check(front(vstruct, dumstr) == 1)
 
     test "test StdVector (process)":
+      echo vstruct.toStr
+
+      var ps: ptr NIMstruct = vstruct.at(1)
+      var pv: ptr StdVector[NIMpoint] = ps[].vec.addr
+      echo fmt"(ptr) vec size: {pv[].size}"
+      var pp: ptr NIMpoint = pv[].at(3) # allows pv.at(3) too
+      pp[].x *= 10
+      pp[].y += 10
+
       echo vstruct.toStr
 
     test "test StdVector (back)":
