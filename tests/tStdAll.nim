@@ -4,6 +4,6 @@
 
 {.push warning[ProveInit]: off .}
 
-import ./std/[tstdvector, tstdstring]
+import ./std/[tstdpair, tstduomap, tstdmap, tstdvector, tstdstring]
 
 {. pop .}

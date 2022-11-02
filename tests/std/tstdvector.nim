@@ -11,7 +11,7 @@ proc toStr(vstruct: StdVector[NIMstruct]): string=
   # for it in vstruct:
   for it in vstruct.begin..<vstruct.end:
     let struct: NIMstruct = it[]
-    r.add(fmt"vec size: {struct.vec.size}")
+    r.add(fmt"vec size: {struct.vec.size} {$struct.txt.cStr}")
     for pt in struct.vec.begin..<struct.vec.end:
       let p: NIMpoint = pt[]
       r.add(fmt" {p}")
@@ -35,7 +35,7 @@ proc run() =
   suite "test StdVector":
     var
       vstruct: StdVector[NIMstruct]
-      dumstr: StdString # dummy (stdstr.size == 0)
+      dumstr: StdString = newStdString("*StdVector") # [0] == '*'
 
     let
       estruct = @[
@@ -59,8 +59,9 @@ proc run() =
       echo vstruct.toStr
 
       var ps: ptr NIMstruct = vstruct.at(1)
+      ps[].txt.at(2)[] = 'x'
       var pv: ptr StdVector[NIMpoint] = ps[].vec.addr
-      echo fmt"(ptr) vec size: {pv[].size}"
+      echo fmt"(ptr) vec size: {pv[].size} {$ps[].txt.cStr}"
       var pp: ptr NIMpoint = pv[].at(3) # allows pv.at(3) too
       pp[].x *= 10
       pp[].y += 10

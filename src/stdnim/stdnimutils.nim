@@ -1,11 +1,13 @@
 # stdnimutils.nim
 
-import stdvector, stdstring
+import stdpair, stduomap, stdmap, stdvector, stdstring
 
 type
   NIMpoint* = tuple[x: cint, y: cint]
 
-type
   NIMstruct* = object
     txt*: StdString
     vec*: StdVector[NIMpoint]
+    mapo*: StdMap[StdString, NIMpoint]
+    mapuo*: StdUoMap[StdString, NIMpoint]
+    pairsp*: StdPair[StdString, NIMpoint]

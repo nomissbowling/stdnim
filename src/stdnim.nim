@@ -1,6 +1,6 @@
-import stdnim/[stdnimutils, stdvector, stdstring]
+import stdnim/[stdnimutils, stdpair, stduomap, stdmap, stdvector, stdstring]
 
 when defined(nimdoc):
   import stdnim/private/stdnimcommon
 
-export stdnimutils, stdvector, stdstring
+export stdnimutils, stdpair, stduomap, stdmap, stdvector, stdstring

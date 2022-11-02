@@ -10,6 +10,7 @@ license       = "MIT"
 srcDir        = "src"
 skipDirs      = @["tests", "benchmarks", "htmldocs"]
 skipFiles     = @["_config.yml"]
+backend       = "cpp"
 
 # Dependencies
 
