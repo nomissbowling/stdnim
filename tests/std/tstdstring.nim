@@ -5,6 +5,11 @@ import stdnim
 import ../../src/stdnim/private/stdnimcommon
 import strformat
 
+proc toSeq(s: StdString): seq[char] =
+  # for it in s.begin..<s.end:
+  for it in s:
+    result.add(it[])
+
 proc run() =
   suite "test StdString":
     var
@@ -32,10 +37,7 @@ proc run() =
       pc[] = 'y'
       echo fmt"(ptr) immstr size: {immstr.addr[].size}"
 
-      # TODO: stdstr.items
-      # for it in stdstr:
-      # for it in stdstr.begin..<stdstr.end:
-      #   echo $it[]
+      echo stdstr.toSeq
 
       echo fmt"stdstr: {stdstr.size} {$stdstr.cStr}"
       echo fmt"immstr: {immstr.size} {$immstr.cStr}"

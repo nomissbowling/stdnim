@@ -28,3 +28,7 @@ proc `[]`*[T](v: ptr StdVector[T], idx: clong): ptr T {.importcpp: "&(*#)[#]".}
 # proc `[]`*[T](v: var StdVector[T], idx: clong): var T {.importcpp: "#[#]".}
 proc `[]=`*[T](v: var StdVector[T], idx: clong, e: T) {.importcpp: "#[#]=#".}
 {.pop.}
+
+iterator items*[T](v: StdVector[T]): StdVectorIterator[T] =
+  for it in v.begin..<v.end:
+    yield it

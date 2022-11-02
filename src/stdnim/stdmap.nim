@@ -42,3 +42,9 @@ proc `[]=`*[K, V](m: var StdMap[K, V], k: K, v: V)
   {.importcpp: "#[#]=#".}
 
 {.pop.}
+
+iterator items*[K, V](m: StdMap[K, V]): StdMapIterator[K, V] =
+  var it = m.begin
+  while it != m.end:
+    yield it
+    it = it.next

@@ -7,12 +7,10 @@ import strformat, strutils
 
 proc toStr(vstruct: StdVector[NIMstruct]): string=
   var r = @[fmt"vstruct size: {vstruct.size}"]
-  # TODO: vstruct.items
-  # for it in vstruct:
-  for it in vstruct.begin..<vstruct.end:
+  for it in vstruct:
     let struct: NIMstruct = it[]
     r.add(fmt"vec size: {struct.vec.size} {$struct.txt.cStr}")
-    for pt in struct.vec.begin..<struct.vec.end:
+    for pt in struct.vec:
       let p: NIMpoint = pt[]
       r.add(fmt" {p}")
   result = r.join("\n")
@@ -20,10 +18,10 @@ proc toStr(vstruct: StdVector[NIMstruct]): string=
 proc cmp(vstruct: StdVector[NIMstruct], estruct: seq[seq[seq[int]]]): bool=
   result = true
   var i = 0
-  for it in vstruct.begin..<vstruct.end:
+  for it in vstruct:
     var j = 0
     let struct: NIMstruct = it[]
-    for pt in struct.vec.begin..<struct.vec.end:
+    for pt in struct.vec:
       let p: NIMpoint = pt[]
       if estruct[i][j][0] != p.x or estruct[i][j][1] != p.y:
         result = false

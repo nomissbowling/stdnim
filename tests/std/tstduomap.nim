@@ -7,30 +7,23 @@ import strformat, strutils
 
 proc toStr(vstruct: StdVector[NIMstruct]): string=
   var r = @[fmt"vstruct size: {vstruct.size}"]
-  # TODO: vstruct.items
-  # for it in vstruct:
-  for it in vstruct.begin..<vstruct.end:
+  for it in vstruct:
     let struct: NIMstruct = it[]
     let m: StdUoMap[StdString, NIMpoint] = struct.mapuo
-    #for mt in m.begin..<m.end: # not define operator< for unordered_map
-    var mt = m.begin
-    while mt != m.end:
+    for mt in m:
       let sp: StdPair[StdString, NIMpoint] = mt[]
       r.add(fmt" [{$sp.first[].cStr}] {$sp.second[]}")
-      mt = mt.next
   result = r.join("\n")
 
 proc cmp(vstruct: StdVector[NIMstruct],
   estruct: seq[seq[tuple[k: string, v: seq[int]]]]): bool=
   result = true
   var i = 0
-  for it in vstruct.begin..<vstruct.end:
+  for it in vstruct:
     let struct: NIMstruct = it[]
     let m: StdUoMap[StdString, NIMpoint] = struct.mapuo
     var j = 0
-    #for mt in m.begin..<m.end: # not define operator< for unordered_map
-    var mt = m.begin
-    while mt != m.end:
+    for mt in m:
       let sp: StdPair[StdString, NIMpoint] = mt[]
       let et: tuple[k: string, v: seq[int]] = estruct[i][j]
       if et.k != $sp.first[].cStr or
@@ -38,7 +31,6 @@ proc cmp(vstruct: StdVector[NIMstruct],
         result = false
         return
       j += 1
-      mt = mt.next
     i += 1
 
 proc run() =

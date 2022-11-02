@@ -1,7 +1,7 @@
 stdnim
 ======
 
-bindings to C++ std classes for Nim
+bindings to C++ std classes string vector pair map unordered_map for Nim
 
 
 now supports
@@ -36,32 +36,26 @@ type
 
 proc toStr(vstruct: StdVector[NIMstruct]): string=
   var r = @[fmt"vstruct size: {vstruct.size}"]
-  # TODO: vstruct.items
-  # for it in vstruct:
-  for it in vstruct.begin..<vstruct.end:
+  for it in vstruct:
     let struct: NIMstruct = it[]
     r.add(fmt"vec size: {struct.vec.size} {$struct.txt.cStr}")
 
     block:
-      for pt in struct.vec.begin..<struct.vec.end:
+      for pt in struct.vec:
         let p: NIMpoint = pt[]
         r.add(fmt" {p}")
 
     block:
       let m: StdMap[StdString, NIMpoint] = struct.mapo
-      var mt = m.begin
-      while mt != m.end:
+      for mt in m:
         let sp: StdPair[StdString, NIMpoint] = mt[]
         r.add(fmt" mo[{$sp.first[].cStr}] {$sp.second[]}")
-        mt = mt.next
 
     block:
       let m: StdUoMap[StdString, NIMpoint] = struct.mapuo
-      var mt = m.begin
-      while mt != m.end:
+      for mt in m:
         let sp: StdPair[StdString, NIMpoint] = mt[]
         r.add(fmt" mu[{$sp.first[].cStr}] {$sp.second[]}")
-        mt = mt.next
 
     block:
       let sp: StdPair[StdString, NIMpoint] = struct.pairsp
