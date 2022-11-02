@@ -56,6 +56,7 @@ proc run() =
     test "test StdVector (process)":
       echo vstruct.toStr
 
+      # to change C++ value from Nim, use ptr
       var ps: ptr NIMstruct = vstruct.at(1)
       ps[].txt.at(2)[] = 'x'
       var pv: ptr StdVector[NIMpoint] = ps[].vec.addr

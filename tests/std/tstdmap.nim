@@ -49,8 +49,10 @@ proc run() =
         @[
           ("Beta", @[205, 1]),
           ("D", @[200, 203]),
-          ("alpha", @[203, 7]),
-          ("ccc", @[203, 3])]]
+          ("F", @[222, 200]),
+          ("alpha", @[233, 777]),
+          ("ccc", @[203, 3]),
+          ("ee", @[234, 222])]]
 
     test "test StdMap (front)":
       check(front(vstruct, dumstr) == 1)
@@ -58,8 +60,12 @@ proc run() =
     test "test StdMap (process)":
       echo vstruct.toStr
 
+      # to change C++ value from Nim, use ptr
       var ps: ptr NIMstruct = vstruct.at(1)
+      ps[].mapo[newStdString("F")] = (cint(222), cint(200))
       var pm: ptr StdMap[StdString, NIMpoint] = ps[].mapo.addr
+      pm[newStdString("ee")] = (cint(234), cint(222))
+      pm[newStdString("alpha")] = (cint(233), cint(777))
 
       echo vstruct.toStr
 

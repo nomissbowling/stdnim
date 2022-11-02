@@ -40,6 +40,8 @@ proc `[]`*[K, V](m: ptr StdMap[K, V], k: K): ptr StdPair[K, V]
 
 proc `[]=`*[K, V](m: var StdMap[K, V], k: K, v: V)
   {.importcpp: "#[#]=#".}
+proc `[]=`*[K, V](m: ptr StdMap[K, V], k: K, v: V)
+  {.importcpp: "(*#)[#]=#".}
 
 {.pop.}
 

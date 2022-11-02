@@ -6,9 +6,7 @@ import ../../src/stdnim/private/stdnimcommon
 import strformat
 
 proc toSeq(s: StdString): seq[char] =
-  # for it in s.begin..<s.end:
-  for it in s:
-    result.add(it[])
+  for it in s: result.add(it[])
 
 proc run() =
   suite "test StdString":

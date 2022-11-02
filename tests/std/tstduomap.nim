@@ -47,8 +47,10 @@ proc run() =
           ("ccc", @[1033, 33]),
           ("D", @[1000, 1033])],
         @[
+          ("F", @[2222, 2000]),
           ("Beta", @[2055, 11]),
-          ("alpha", @[2033, 77]),
+          ("ee", @[2345, 2222]),
+          ("alpha", @[2333, 7777]),
           ("ccc", @[2033, 33]),
           ("D", @[2000, 2033])]]
 
@@ -58,8 +60,12 @@ proc run() =
     test "test StdUoMap (process)":
       echo vstruct.toStr
 
+      # to change C++ value from Nim, use ptr
       var ps: ptr NIMstruct = vstruct.at(1)
+      ps[].mapuo[newStdString("F")] = (cint(2222), cint(2000))
       var pm: ptr StdUoMap[StdString, NIMpoint] = ps[].mapuo.addr
+      pm[newStdString("alpha")] = (cint(2333), cint(7777))
+      pm[newStdString("ee")] = (cint(2345), cint(2222))
 
       echo vstruct.toStr
 
