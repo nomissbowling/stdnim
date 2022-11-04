@@ -62,10 +62,10 @@ proc run() =
 
       # to change C++ value from Nim, use ptr
       var ps: ptr NIMstruct = vstruct.at(1)
-      ps[].mapo[newStdString("F")] = (cint(222), cint(200))
+      ps[].mapo[newStdString("F")] = (222.cint, 200.cint)
       var pm: ptr StdMap[StdString, NIMpoint] = ps[].mapo.addr
-      pm[newStdString("ee")] = (cint(234), cint(222))
-      pm[newStdString("alpha")] = (cint(233), cint(777))
+      pm[newStdString("ee")] = (234.cint, 222.cint)
+      pm[newStdString("alpha")] = (233.cint, 777.cint)
 
       echo vstruct.toStr
 
