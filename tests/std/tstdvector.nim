@@ -9,7 +9,7 @@ proc toStr(vstruct: StdVector[NIMstruct]): string=
   var r = @[fmt"vstruct size: {vstruct.size}"]
   for it in vstruct:
     let struct: NIMstruct = it[]
-    r.add(fmt"vec size: {struct.vec.size} {$struct.txt.cStr}")
+    r.add(fmt"vec size: {struct.vec.size} {$struct.txt}")
     for pt in struct.vec:
       let p: NIMpoint = pt[]
       r.add(fmt" {p}")
@@ -17,17 +17,14 @@ proc toStr(vstruct: StdVector[NIMstruct]): string=
 
 proc cmp(vstruct: StdVector[NIMstruct], estruct: seq[seq[seq[int]]]): bool=
   result = true
-  var i = 0
-  for it in vstruct:
+  for i, it in vstruct:
     var j = 0
     let struct: NIMstruct = it[]
-    for pt in struct.vec:
+    for j, pt in struct.vec:
       let p: NIMpoint = pt[]
       if estruct[i][j][0] != p.x or estruct[i][j][1] != p.y:
         result = false
         return
-      j += 1
-    i += 1
 
 proc run() =
   suite "test StdVector":
@@ -60,7 +57,7 @@ proc run() =
       var ps: ptr NIMstruct = vstruct.at(1)
       ps[].txt.at(2)[] = 'x'
       var pv: ptr StdVector[NIMpoint] = ps[].vec.addr
-      echo fmt"(ptr) vec size: {pv[].size} {$ps[].txt.cStr}"
+      echo fmt"(ptr) vec size: {pv[].size} {$ps[].txt}"
       var pp: ptr NIMpoint = pv[].at(3) # allows pv.at(3) too
       pp[].x *= 10
       pp[].y += 10

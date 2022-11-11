@@ -50,3 +50,11 @@ iterator items*[K, V](m: StdMap[K, V]): StdMapIterator[K, V] =
   while it != m.end:
     yield it
     it = it.next
+
+iterator pairs*[K, V](m: StdMap[K, V]): tuple[key: int, it: StdMapIterator[K, V]] =
+  var i = 0
+  var it = m.begin
+  while it != m.end:
+    yield (i, it)
+    it = it.next
+    i += 1

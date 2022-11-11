@@ -12,26 +12,22 @@ proc toStr(vstruct: StdVector[NIMstruct]): string=
     let m: StdUoMap[StdString, NIMpoint] = struct.mapuo
     for mt in m:
       let sp: StdPair[StdString, NIMpoint] = mt[]
-      r.add(fmt" [{$sp.first[].cStr}] {$sp.second[]}")
+      r.add(fmt" [{$sp.first[]}] {$sp.second[]}")
   result = r.join("\n")
 
 proc cmp(vstruct: StdVector[NIMstruct],
   estruct: seq[seq[tuple[k: string, v: seq[int]]]]): bool=
   result = true
-  var i = 0
-  for it in vstruct:
+  for i, it in vstruct:
     let struct: NIMstruct = it[]
     let m: StdUoMap[StdString, NIMpoint] = struct.mapuo
-    var j = 0
-    for mt in m:
+    for j, mt in m:
       let sp: StdPair[StdString, NIMpoint] = mt[]
       let et: tuple[k: string, v: seq[int]] = estruct[i][j]
-      if et.k != $sp.first[].cStr or
+      if et.k != $sp.first[] or
         et.v[0] != sp.second[].x or et.v[1] != sp.second[].y:
         result = false
         return
-      j += 1
-    i += 1
 
 proc run() =
   suite "test StdUoMap":

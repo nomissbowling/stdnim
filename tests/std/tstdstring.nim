@@ -17,15 +17,15 @@ proc run() =
       immstr: StdString = newStdString("direct")
 
     test "test StdString (front)":
-      echo fmt"stdstr: {stdstr.size} {$stdstr.cStr}"
-      echo fmt"immstr: {immstr.size} {$immstr.cStr}"
+      echo fmt"stdstr: {stdstr.size} {$stdstr}"
+      echo fmt"immstr: {immstr.size} {$immstr}"
 
       check(front(vstruct, stdstr) == 1)
       check(front(vstruct, immstr) == 1)
 
     test "test StdVector (process)":
-      echo fmt"stdstr: {stdstr.size} {$stdstr.cStr}"
-      echo fmt"immstr: {immstr.size} {$immstr.cStr}"
+      echo fmt"stdstr: {stdstr.size} {$stdstr}"
+      echo fmt"immstr: {immstr.size} {$immstr}"
 
       echo stdstr[3]
       stdstr[3] = 'x'
@@ -37,17 +37,17 @@ proc run() =
 
       echo stdstr.toSeq
 
-      echo fmt"stdstr: {stdstr.size} {$stdstr.cStr}"
-      echo fmt"immstr: {immstr.size} {$immstr.cStr}"
+      echo fmt"stdstr: {stdstr.size} {$stdstr}"
+      echo fmt"immstr: {immstr.size} {$immstr}"
 
     test "test StdString (back)":
       check(back(vstruct, stdstr) == 0)
       check(back(vstruct, immstr) == 0)
 
-      echo fmt"stdstr: {stdstr.size} {$stdstr.cStr}"
-      echo fmt"immstr: {immstr.size} {$immstr.cStr}"
+      echo fmt"stdstr: {stdstr.size} {$stdstr}"
+      echo fmt"immstr: {immstr.size} {$immstr}"
 
-      check($stdstr.cStr == "!esxSTDSTz")
-      check($immstr.cStr == "!iryxz")
+      check($stdstr == "!esxSTDSTz")
+      check($immstr == "!iryxz")
 
 run()

@@ -12,21 +12,19 @@ proc toStr(vstruct: StdVector[NIMstruct]): string=
   for it in vstruct.begin..<vstruct.end:
     let struct: NIMstruct = it[]
     let sp: StdPair[StdString, NIMpoint] = struct.pairsp
-    r.add(fmt" {$sp.first[].cStr}: {$sp.second[]}")
+    r.add(fmt" {$sp.first[]}: {$sp.second[]}")
   result = r.join("\n")
 
 proc cmp(vstruct: StdVector[NIMstruct],
   estruct: seq[tuple[k: string, v: seq[int]]]): bool=
   result = true
-  var i = 0
-  for it in vstruct.begin..<vstruct.end:
+  for i, it in vstruct:
     let struct: NIMstruct = it[]
     let sp: StdPair[StdString, NIMpoint] = struct.pairsp
-    if estruct[i].k != $sp.first[].cStr or
+    if estruct[i].k != $sp.first[] or
       estruct[i].v[0] != sp.second[].x or estruct[i].v[1] != sp.second[].y:
       result = false
       return
-    i += 1
 
 proc run() =
   suite "test StdPair":

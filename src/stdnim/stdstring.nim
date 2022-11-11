@@ -35,3 +35,21 @@ proc `[]=`*(s: var StdString, idx: clong, c: char) {.importcpp: "#[#]=#".}
 iterator items*(s: StdString): StdStringIterator =
   for it in s.begin..<s.end:
     yield it
+
+iterator pairs*(s: StdString): tuple[key: int, it: StdStringIterator] =
+  var i = 0
+  for it in s.begin..<s.end:
+    yield (i, it)
+    i += 1
+
+proc `$`*(s: StdString): string =
+  result = $s.cStr
+
+proc `$`*(s: ptr StdString): string =
+  result = $s.cStr
+
+proc repr*(s: StdString): string =
+  result = $s.cStr
+
+proc repr*(s: ptr StdString): string =
+  result = $s.cStr

@@ -32,3 +32,9 @@ proc `[]=`*[T](v: var StdVector[T], idx: clong, e: T) {.importcpp: "#[#]=#".}
 iterator items*[T](v: StdVector[T]): StdVectorIterator[T] =
   for it in v.begin..<v.end:
     yield it
+
+iterator pairs*[T](v: StdVector[T]): tuple[key: int, it: StdVectorIterator[T]] =
+  var i = 0
+  for it in v.begin..<v.end:
+    yield (i, it)
+    i += 1
