@@ -38,3 +38,9 @@ iterator pairs*[T](v: StdVector[T]): tuple[key: int, it: StdVectorIterator[T]] =
   for it in v.begin..<v.end:
     yield (i, it)
     i += 1
+
+proc `$`*[T](it: StdVectorIterator[T]): string =
+  result = $it[]
+
+proc repr*[T](it: StdVectorIterator[T]): string =
+  result = $it[]
