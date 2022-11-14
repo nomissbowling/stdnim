@@ -50,4 +50,8 @@ proc run() =
       check($stdstr == "!esxSTDSTz")
       check($immstr == "!iryxz")
 
+      echo stdstr.repr
+      echo immstr.repr
+      echo vstruct.repr
+
 run()

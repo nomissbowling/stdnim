@@ -1,5 +1,7 @@
 # stdvector.nim
 
+import strformat, strutils
+
 {.push header: "<vector>".}
 type
   StdVector*[T] {.importcpp: "std::vector".} = object
@@ -42,5 +44,19 @@ iterator pairs*[T](v: StdVector[T]): tuple[key: int, it: StdVectorIterator[T]] =
 proc `$`*[T](it: StdVectorIterator[T]): string =
   result = $it[]
 
-proc repr*[T](it: StdVectorIterator[T]): string =
-  result = $it[]
+template repr*[T](it: StdVectorIterator[T]): string =
+  $it
+
+proc `$`*[T](v: StdVector[T]): string =
+  var r: seq[string] = @[]
+  for it in v: r.add(it.repr)
+  let
+    s = r.join(",\n")
+    t = if v.len > 0: "\n" else: ""
+  result = fmt"[{t}{s}]"
+
+template repr*[T](v: StdVector[T]): string =
+  $v
+
+template len*[T](v: StdVector[T]): int =
+  v.size.int

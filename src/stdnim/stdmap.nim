@@ -1,5 +1,6 @@
 # stdmap.nim
 
+import strformat, strutils
 import stdpair
 
 {.push header: "<map>".}
@@ -58,3 +59,17 @@ iterator pairs*[K, V](m: StdMap[K, V]): tuple[key: int, it: StdMapIterator[K, V]
     yield (i, it)
     it = it.next
     i += 1
+
+proc `$`*[K, V](m: StdMap[K, V]): string =
+  var r: seq[string] = @[]
+  for it in m: r.add(it[].repr)
+  let
+    s = r.join(",\n")
+    t = if m.len > 0: "\n" else: ""
+  result = fmt"{'\x7b'}{t}{s}{'\x7d'}"
+
+template repr*[K, V](m: StdMap[K, V]): string =
+  $m
+
+template len*[K, V](m: StdMap[K, V]): int =
+  m.size.int

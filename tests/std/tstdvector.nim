@@ -71,4 +71,7 @@ proc run() =
 
       check(vstruct.cmp(estruct))
 
+      echo vstruct.repr
+      echo dumstr.repr
+
 run()

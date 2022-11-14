@@ -63,6 +63,7 @@ proc run() =
       pm[newStdString("ee")] = (234.cint, 222.cint)
       pm[newStdString("alpha")] = (233.cint, 777.cint)
 
+      echo pm[].repr
       echo vstruct.toStr
 
     test "test StdMap (back)":
@@ -71,5 +72,8 @@ proc run() =
       echo vstruct.toStr
 
       check(vstruct.cmp(estruct))
+
+      echo vstruct.repr
+      echo dumstr.repr
 
 run()

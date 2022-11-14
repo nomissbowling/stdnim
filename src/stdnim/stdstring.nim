@@ -1,5 +1,7 @@
 # stdstring.nim
 
+import strformat
+
 {.push header: "<string>".}
 type
   StdString* {.importcpp: "std::string".} = object
@@ -46,10 +48,15 @@ proc `$`*(s: StdString): string =
   result = $s.cStr
 
 proc `$`*(s: ptr StdString): string =
-  result = $s.cStr
+  result = $s[]
 
-proc repr*(s: StdString): string =
-  result = $s.cStr
+template repr*(s: StdString): string =
+  block:
+    let s_inj {.inject.} = $s
+    fmt"{'\x22'}{s_inj}{'\x22'}"
 
-proc repr*(s: ptr StdString): string =
-  result = $s.cStr
+template repr*(s: ptr StdString): string =
+  s[].repr
+
+template len*(s: StdString): int =
+  s.size.int
