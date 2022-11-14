@@ -20,16 +20,16 @@ proc begin*(s: StdString): StdStringIterator {.importcpp: "begin".}
 proc `end`*(s: StdString): StdStringIterator {.importcpp: "end".}
 proc `[]`*(it: StdStringIterator): char {.importcpp: "(*#)".}
 proc inc*(it: var StdStringIterator) {.importcpp: "(++#)".}
-proc next*(it: StdStringIterator; n: clong=1): StdStringIterator
+proc next*(it: StdStringIterator; n: clonglong=1): StdStringIterator
   {.importcpp: "next(@)".}
 proc `<`*(a, b: StdStringIterator): bool {.importcpp: "operator<(@)".}
 proc `<=`*(a, b: StdStringIterator): bool {.importcpp: "operator<=(@)".}
-proc at*(s: StdString, idx: clong): ptr char {.importcpp: "&#.at(#)".}
-proc at*(s: ptr StdString, idx: clong): ptr char {.importcpp: "&#->at(#)".}
-proc `[]`*(s: StdString, idx: clong): char {.importcpp: "#[#]".}
-proc `[]`*(s: ptr StdString, idx: clong): ptr char {.importcpp: "&(*#)[#]".}
-# proc `[]`*(s: var StdString, idx: clong): var char {.importcpp: "#[#]".}
-proc `[]=`*(s: var StdString, idx: clong, c: char) {.importcpp: "#[#]=#".}
+proc at*(s: StdString; idx: clonglong): ptr char {.importcpp: "&#.at(#)".}
+proc at*(s: ptr StdString; idx: clonglong): ptr char {.importcpp: "&#->at(#)".}
+proc `[]`*(s: StdString; idx: clonglong): char {.importcpp: "#[#]".}
+proc `[]`*(s: ptr StdString; idx: clonglong): ptr char {.importcpp: "&(*#)[#]".}
+# proc `[]`*(s: var StdString; idx: clonglong): var char {.importcpp: "#[#]".}
+proc `[]=`*(s: var StdString; idx: clonglong, c: char) {.importcpp: "#[#]=#".}
 {.pop.}
 
 iterator items*(s: StdString): StdStringIterator =

@@ -23,7 +23,7 @@ proc `[]`*[K, V](it: StdMapIterator[K, V]): StdPair[K, V]
   {.importcpp: "(*#)".}
 proc inc*[K, V](it: var StdMapIterator[K, V])
   {.importcpp: "(++#)".}
-proc next*[K, V](it: StdMapIterator[K, V]; n: clong=1): StdMapIterator[K, V]
+proc next*[K, V](it: StdMapIterator[K, V]; n: clonglong=1): StdMapIterator[K, V]
   {.importcpp: "next(@)".}
 proc `!=`*[K, V](a, b: StdMapIterator[K, V]): bool
   {.importcpp: "operator!=(@)".}

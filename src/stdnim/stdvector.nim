@@ -17,16 +17,16 @@ proc begin*[T](v: StdVector[T]): StdVectorIterator[T] {.importcpp: "begin".}
 proc `end`*[T](v: StdVector[T]): StdVectorIterator[T] {.importcpp: "end".}
 proc `[]`*[T](it: StdVectorIterator[T]): T {.importcpp: "(*#)".}
 proc inc*[T](it: var StdVectorIterator[T]) {.importcpp: "(++#)".}
-proc next*[T](it: StdVectorIterator[T]; n: clong=1): StdVectorIterator[T]
+proc next*[T](it: StdVectorIterator[T]; n: clonglong=1): StdVectorIterator[T]
   {.importcpp: "next(@)".}
 proc `<`*[T](a, b: StdVectorIterator[T]): bool {.importcpp: "operator<(@)".}
 proc `<=`*[T](a, b: StdVectorIterator[T]): bool {.importcpp: "operator<=(@)".}
-proc at*[T](v: StdVector[T], idx: clong): ptr T {.importcpp: "&#.at(#)".}
-proc at*[T](v: ptr StdVector[T], idx: clong): ptr T {.importcpp: "&#->at(#)".}
-proc `[]`*[T](v: StdVector[T], idx: clong): T {.importcpp: "#[#]".}
-proc `[]`*[T](v: ptr StdVector[T], idx: clong): ptr T {.importcpp: "&(*#)[#]".}
-# proc `[]`*[T](v: var StdVector[T], idx: clong): var T {.importcpp: "#[#]".}
-proc `[]=`*[T](v: var StdVector[T], idx: clong, e: T) {.importcpp: "#[#]=#".}
+proc at*[T](v: StdVector[T], idx: clonglong): ptr T {.importcpp: "&#.at(#)".}
+proc at*[T](v: ptr StdVector[T], idx: clonglong): ptr T {.importcpp: "&#->at(#)".}
+proc `[]`*[T](v: StdVector[T], idx: clonglong): T {.importcpp: "#[#]".}
+proc `[]`*[T](v: ptr StdVector[T], idx: clonglong): ptr T {.importcpp: "&(*#)[#]".}
+# proc `[]`*[T](v: var StdVector[T], idx: clonglong): var T {.importcpp: "#[#]".}
+proc `[]=`*[T](v: var StdVector[T], idx: clonglong, e: T) {.importcpp: "#[#]=#".}
 {.pop.}
 
 iterator items*[T](v: StdVector[T]): StdVectorIterator[T] =
